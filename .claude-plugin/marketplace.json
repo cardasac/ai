@@ -1,6 +1,6 @@
 {
   "name": "cardasac",
-  "description": "Personal Claude Code plugins",
+  "description": "Plugins for AI coding agents: language servers, MCP servers and skills",
   "owner": {
     "name": "Alexandru Constantin Cardas"
   },
