@@ -1,0 +1,14 @@
+{
+  "name": "calexc",
+  "description": "Personal Claude Code plugins",
+  "owner": {
+    "name": "Alexandru Constantin Cardas"
+  },
+  "plugins": [
+    {
+      "name": "astro",
+      "source": "./plugins/astro",
+      "description": "Astro language server for .astro files plus the official Astro docs MCP server"
+    }
+  ]
+}

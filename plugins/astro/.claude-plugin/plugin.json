@@ -1,0 +1,8 @@
+{
+  "name": "astro",
+  "description": "Astro language server for .astro files plus the official Astro docs MCP server",
+  "version": "1.0.0",
+  "author": {
+    "name": "Alexandru Constantin Cardas"
+  }
+}
