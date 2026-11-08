@@ -4,19 +4,12 @@ Personal [Claude Code](https://code.claude.com) plugin marketplace.
 
 ## Install
 
-From a local clone:
-
 ```
-/plugin marketplace add ~/development/github/claude-plugins
-/plugin install astro@calexc
+/plugin marketplace add cardasac/ai
+/plugin install astro@cardasac
 ```
 
-From GitHub (once pushed):
-
-```
-/plugin marketplace add <github-user>/claude-plugins
-/plugin install astro@calexc
-```
+Or from a local clone: `/plugin marketplace add /path/to/clone`.
 
 Start a new session (or run `/reload-plugins`) after installing.
 
@@ -36,6 +29,6 @@ Start a new session (or run `/reload-plugins`) after installing.
 1. Create `plugins/<name>/.claude-plugin/plugin.json` with at least `{ "name": "<name>" }` (kebab-case).
 2. Add components at the plugin root, not inside `.claude-plugin/` (e.g. `.lsp.json`, `skills/`, `commands/`, `hooks/`).
 3. Register it in `.claude-plugin/marketplace.json` under `plugins`, with `source: "./plugins/<name>"`.
-4. Run `/reload-plugins`, then `/plugin install <name>@calexc`.
+4. Run `/reload-plugins`, then `/plugin install <name>@cardasac`.
 
 `claude plugin validate` does not check `.lsp.json`; LSP config errors show up in the `/plugin` **Errors** tab.
