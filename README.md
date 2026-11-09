@@ -39,9 +39,33 @@ Or from a local clone: `/plugin marketplace add /path/to/clone`. Start a new ses
 - **LSP** (`.lsp.json`): runs `@astrojs/language-server` from the **current project's** `node_modules`, so nothing is installed globally. The project needs `@astrojs/language-server` (pulled in by `@astrojs/check`) and `typescript`. `.ts` files are not handled here; use a TypeScript language server for those.
 - **MCP** (`.mcp.json`): the official Astro docs server at `https://mcp.docs.astro.build/mcp`, for searching current Astro documentation. If you already added it to your tool separately, remove that entry to avoid a duplicate.
 
+## Companion plugins
+
+Official plugins from other marketplaces that I use alongside these.
+
+| Plugin | Marketplace | Provides | Needs on `PATH` |
+| --- | --- | --- | --- |
+| `typescript-lsp` | `claude-plugins-official` (Anthropic) | TypeScript / JavaScript language server | `typescript-language-server`: `npm install -g typescript-language-server typescript` |
+| `pyright-lsp` | `claude-plugins-official` (Anthropic) | Python language server (Pyright) | `pyright-langserver`: `npm install -g pyright` or `pipx install pyright` |
+| `dotnet` | `dotnet-agent-skills` ([dotnet/skills](https://github.com/dotnet/skills), Microsoft) | Microsoft's Roslyn C# language server for `.cs`, `.razor`, `.cshtml`, plus .NET skills | .NET 10+ SDK (`dotnet dnx`) |
+
+```
+/plugin install typescript-lsp@claude-plugins-official
+/plugin install pyright-lsp@claude-plugins-official
+/plugin marketplace add dotnet/skills
+/plugin install dotnet@dotnet-agent-skills
+```
+
+Do not also install `csharp-lsp` from Anthropic's marketplace. It runs the community `csharp-ls` server, and only one server handles each file extension ([plugin components](https://code.claude.com/docs/en/plugins/components)).
+
+## Backup of my Claude Code setup
+
+My settings, global instructions and MCP servers are in [config/claude-code](config/claude-code), with restore steps.
+
 ## Layout
 
 ```
+config/claude-code/                 # backup of my ~/.claude config
 .claude-plugin/marketplace.json     # Claude Code marketplace manifest
 plugins/<name>/
   .claude-plugin/plugin.json        # Claude Code plugin manifest

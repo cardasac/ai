@@ -1,0 +1,92 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "permissions": {
+    "deny": [
+      "Bash"
+    ],
+    "defaultMode": "default",
+    "disableBypassPermissionsMode": "disable"
+  },
+  "disableRemoteControl": true,
+  "syncClaudeAiPlugins": false,
+  "enabledPlugins": {
+    "frontend-design@claude-plugins-official": true,
+    "typescript-lsp@claude-plugins-official": true,
+    "pyright-lsp@claude-plugins-official": true,
+    "deploy-on-aws@claude-plugins-official": true,
+    "aws-core@agent-toolkit-for-aws": true,
+    "claude-md-management@anthropic-plugin-directory": true,
+    "dart-and-flutter@anthropic-plugin-directory": true,
+    "dotnet@dotnet-agent-skills": true,
+    "dotnet-aspnetcore@dotnet-agent-skills": true,
+    "dotnet-blazor@dotnet-agent-skills": true,
+    "dotnet-nuget@dotnet-agent-skills": true,
+    "dotnet-template-engine@dotnet-agent-skills": true,
+    "dotnet-test@dotnet-agent-skills": true,
+    "dotnet-upgrade@dotnet-agent-skills": true,
+    "aspire@aspire-skills": true,
+    "security-guidance@anthropic-plugin-directory": true,
+    "github@claude-plugins-official": true,
+    "dotnet-advanced@dotnet-agent-skills": true,
+    "dotnet-ai@dotnet-agent-skills": true,
+    "dotnet-msbuild@dotnet-agent-skills": true,
+    "dotnet-test-migration@dotnet-agent-skills": true,
+    "dotnet11@dotnet-agent-skills": true,
+    "dotnet-data@dotnet-agent-skills": true,
+    "dotnet-diag@dotnet-agent-skills": true,
+    "context7@anthropic-plugin-directory": true,
+    "playwright@anthropic-plugin-directory": true,
+    "feature-dev@anthropic-plugin-directory": true,
+    "claude-code-setup@anthropic-plugin-directory": true,
+    "sonarqube@claude-plugins-official": true,
+    "microsoft-docs@claude-plugins-official": true,
+    "cc-plugin-you-should-know@builtin": true,
+    "astro@cardasac": true,
+    "chrome-devtools-mcp@claude-plugins-official": true,
+    "gopls-lsp@claude-plugins-official": true
+  },
+  "extraKnownMarketplaces": {
+    "agent-toolkit-for-aws": {
+      "source": {
+        "source": "github",
+        "repo": "aws/agent-toolkit-for-aws"
+      },
+      "autoUpdate": true
+    },
+    "dotnet-agent-skills": {
+      "source": {
+        "source": "github",
+        "repo": "dotnet/skills"
+      }
+    },
+    "aspire-skills": {
+      "source": {
+        "source": "github",
+        "repo": "microsoft/aspire-skills"
+      },
+      "autoUpdate": true
+    },
+    "cardasac": {
+      "source": {
+        "source": "github",
+        "repo": "cardasac/ai"
+      }
+    }
+  },
+  "pluginConfigs": {
+    "cc-plugin-agents-md@builtin": {
+      "options": {
+        "instructionFiles": "claude-md-and-agents-md"
+      }
+    }
+  },
+  "outputStyle": "Concise",
+  "modelSettings": {
+    "claude-opus-5-5": {
+      "effortLevel": "xhigh"
+    }
+  },
+  "awaySummaryEnabled": false,
+  "theme": "auto",
+  "autoConnectIde": true
+}
