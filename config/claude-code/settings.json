@@ -1,5 +1,8 @@
 {
   "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "env": {
+    "ASPIRE_CLI_TELEMETRY_OPTOUT": "true"
+  },
   "permissions": {
     "deny": [
       "Bash"
@@ -26,7 +29,6 @@
     "pyright-lsp@claude-plugins-official": true,
     "deploy-on-aws@claude-plugins-official": true,
     "aws-core@agent-toolkit-for-aws": true,
-    "claude-md-management@anthropic-plugin-directory": true,
     "dart-and-flutter@anthropic-plugin-directory": true,
     "dotnet@dotnet-agent-skills": true,
     "dotnet-aspnetcore@dotnet-agent-skills": true,

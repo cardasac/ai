@@ -21,7 +21,7 @@ User-level rules in `~/.claude/rules/` apply to every project. Rules without `pa
 
 `rules/` is a symlink, so rule edits land in this repo directly. Rules directories support symlinks, but Cowork sessions skip a symlinked `~/.claude/rules/` that points outside the working directory ([memory](https://code.claude.com/docs/en/memory)).
 
-`settings.json` is a copy, not a symlink. Claude Code writes to `~/.claude/settings.json` itself, for example from `/config`, `/model` and `/memory` ([settings](https://code.claude.com/docs/en/settings)), and the local file holds hooks and env values that stay out of this repo (see [Not backed up](#not-backed-up)). After changing settings locally, copy the changes here by hand.
+`settings.json` is a copy, not a symlink. Claude Code writes to `~/.claude/settings.json` itself, for example from `/config`, `/model` and `/memory` ([settings](https://code.claude.com/docs/en/settings)), and the local file holds hooks and an env value that stay out of this repo (see [Not backed up](#not-backed-up)). After changing settings locally, copy the changes here by hand.
 
 By default Claude Code reads a project's `AGENTS.md` only when there is no `CLAUDE.md` in the working directory or above it ([memory](https://code.claude.com/docs/en/memory)). The backed up `settings.json` sets `pluginConfigs."cc-plugin-agents-md@builtin".options.instructionFiles` to `claude-md-and-agents-md` (the **Project instructions** option in `/config`), so it reads both. This key is only read from user or managed settings, not project settings.
 

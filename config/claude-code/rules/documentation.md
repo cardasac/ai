@@ -6,4 +6,5 @@
 - Do not assume anything, always check before doing anything.
 - Check current date to get up to date information on libraries, APIs and references.
 - Only give recommendations backed by official documentation, and cite the source for each one.
-- If official documentation does not cover something, say so explicitly. Do not fill the gap with your own opinions or invented names presented as recommendations.
+- If official documentation does not cover something, say "not documented" instead of guessing. Do not fill the gap with your own opinions or invented names presented as recommendations. Clearly label any idea or workaround of your own as untested.
+- Always adhere to best practices.
