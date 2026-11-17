@@ -6,25 +6,27 @@ Claude Code has no per-user sync for these files. Only plugins, skills and conne
 
 ## Rule: official plugins first
 
-If a tool has an official plugin, use the plugin. No hand-added MCP servers (`claude mcp add`), no hand-copied skills in `~/.claude/skills/`, and no claude.ai connectors for anything a plugin already covers. Connectors are only for services that have no plugin.
+If a tool has an official plugin, use the plugin. No hand-added MCP servers (`claude mcp add`), no hand-copied skills in `~/.claude/skills/`, and no claude.ai connectors.
 
-Everything then lives in `settings.json`, so nothing in `~/.claude.json` needs backing up. `settings.json` also sets `syncClaudeAiPlugins` to `false`, so plugins turned on in the claude.ai account stay in the claude.ai apps and do not load in Claude Code ([settings](https://code.claude.com/docs/en/settings)).
+Everything then lives in `settings.json`, so nothing in `~/.claude.json` needs backing up. `settings.json` also sets `syncClaudeAiPlugins` to `false`, so plugins turned on in the claude.ai account stay in the claude.ai apps and do not load in Claude Code ([settings](https://code.claude.com/docs/en/settings)), and `disableClaudeAiConnectors` to `true`, so Claude Code does not fetch connectors from the claude.ai account ([settings reference](https://code.claude.com/docs/en/settings-reference#disableclaudeaiconnectors)).
 
 ## Files
 
 | File | Copy to | What it is |
 | --- | --- | --- |
 | `settings.json` | `~/.claude/settings.json` | Permissions, enabled plugins, extra marketplaces, output style, model settings |
-| `AGENTS.md` | `~/.claude/AGENTS.md` | Global instructions |
+| `rules/` | `~/.claude/rules/` | Global instructions, one topic per file |
 
-By default Claude Code reads `AGENTS.md` only when there is no `CLAUDE.md` in the working directory or above it ([memory](https://code.claude.com/docs/en/memory)). `~/.claude/AGENTS.md` is found as `.claude/AGENTS.md` in a directory above the project, so it covers projects inside the home directory. The backed up `settings.json` sets `pluginConfigs."cc-plugin-agents-md@builtin".options.instructionFiles` to `claude-md-and-agents-md` (the **Project instructions** option in `/config`), so it also loads in projects that have their own `CLAUDE.md`. This key is only read from user or managed settings, not project settings.
+User-level rules in `~/.claude/rules/` apply to every project. Rules without `paths` frontmatter load at launch, and user rules load before project rules ([memory](https://code.claude.com/docs/en/memory)).
+
+By default Claude Code reads a project's `AGENTS.md` only when there is no `CLAUDE.md` in the working directory or above it ([memory](https://code.claude.com/docs/en/memory)). The backed up `settings.json` sets `pluginConfigs."cc-plugin-agents-md@builtin".options.instructionFiles` to `claude-md-and-agents-md` (the **Project instructions** option in `/config`), so it reads both. This key is only read from user or managed settings, not project settings.
 
 ## Restore
 
 1. Copy the files:
 
    ```
-   cp settings.json AGENTS.md ~/.claude/
+   cp -r settings.json rules ~/.claude/
    ```
 
    On the next start, Claude Code clones the marketplaces in `extraKnownMarketplaces` and downloads the plugins in `enabledPlugins` that are not cached yet ([plugin loading](https://code.claude.com/docs/en/plugins/loading)). If one does not come back, reinstall it with `/plugin install <id>` using the IDs in `settings.json`.
@@ -54,8 +56,9 @@ By default Claude Code reads `AGENTS.md` only when there is no `CLAUDE.md` in th
    - `sonarqube`: run `/sonarqube:sonar-integrate`. It installs `sonarqube-cli`, runs `sonar auth login` (token goes to the system keychain), then `sonar integrate claude`, which adds the SonarQube MCP server and secrets-scanning hooks to the Claude Code config. Do not copy those hooks into this backup; `sonar integrate claude` recreates them.
    - `aspire`: the Aspire MCP server is opt-in per repository with `aspire agent init --mcp`.
 
-4. Sign in with the claude.ai account. Connectors added at claude.ai become available in Claude Code with a claude.ai subscription login ([MCP](https://code.claude.com/docs/en/mcp)).
+4. Sign in with the claude.ai account. Connectors added at claude.ai stay out of Claude Code because of `disableClaudeAiConnectors` ([MCP](https://code.claude.com/docs/en/mcp)).
 
 ## Not backed up
 
 - `~/.claude.json`: account state, per-project history and secrets. Never commit it.
+- `env.AWS_MCP_PROXY_PROFILES` in `settings.json`: holds AWS profile names, so it stays out of this repo. Add it back to `~/.claude/settings.json` by hand after restoring.

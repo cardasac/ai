@@ -9,6 +9,17 @@
   },
   "disableRemoteControl": true,
   "syncClaudeAiPlugins": false,
+  "disableClaudeAiConnectors": true,
+  "enableArtifact": false,
+  "includeGitInstructions": false,
+  "syncClaudeAiSkills": false,
+  "showClearContextOnPlanAccept": true,
+  "feedbackDrafts": "off",
+  "viewMode": "focus",
+  "spinnerTipsEnabled": false,
+  "promptSuggestionEnabled": false,
+  "showTurnDuration": false,
+  "feedbackSurveyRate": 0,
   "enabledPlugins": {
     "frontend-design@claude-plugins-official": true,
     "typescript-lsp@claude-plugins-official": true,
@@ -57,7 +68,8 @@
       "source": {
         "source": "github",
         "repo": "dotnet/skills"
-      }
+      },
+      "autoUpdate": true
     },
     "aspire-skills": {
       "source": {
@@ -70,7 +82,8 @@
       "source": {
         "source": "github",
         "repo": "cardasac/ai"
-      }
+      },
+      "autoUpdate": true
     }
   },
   "pluginConfigs": {
@@ -83,6 +96,9 @@
   "outputStyle": "Concise",
   "modelSettings": {
     "claude-opus-5-5": {
+      "effortLevel": "xhigh"
+    },
+    "claude-fable-5-2": {
       "effortLevel": "xhigh"
     }
   },
