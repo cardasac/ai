@@ -12,22 +12,29 @@ Everything then lives in `settings.json`, so nothing in `~/.claude.json` needs b
 
 ## Files
 
-| File | Copy to | What it is |
+| File | How it is installed | What it is |
 | --- | --- | --- |
-| `settings.json` | `~/.claude/settings.json` | Permissions, enabled plugins, extra marketplaces, output style, model settings |
-| `rules/` | `~/.claude/rules/` | Global instructions, one topic per file |
+| `settings.json` | Copied to `~/.claude/settings.json` | Permissions, enabled plugins, extra marketplaces, output style, model settings |
+| `rules/` | Symlinked as `~/.claude/rules` | Global instructions, one topic per file |
 
 User-level rules in `~/.claude/rules/` apply to every project. Rules without `paths` frontmatter load at launch, and user rules load before project rules ([memory](https://code.claude.com/docs/en/memory)).
+
+`rules/` is a symlink, so rule edits land in this repo directly. Rules directories support symlinks, but Cowork sessions skip a symlinked `~/.claude/rules/` that points outside the working directory ([memory](https://code.claude.com/docs/en/memory)).
+
+`settings.json` is a copy, not a symlink. Claude Code writes to `~/.claude/settings.json` itself, for example from `/config`, `/model` and `/memory` ([settings](https://code.claude.com/docs/en/settings)), and the local file holds hooks and env values that stay out of this repo (see [Not backed up](#not-backed-up)). After changing settings locally, copy the changes here by hand.
 
 By default Claude Code reads a project's `AGENTS.md` only when there is no `CLAUDE.md` in the working directory or above it ([memory](https://code.claude.com/docs/en/memory)). The backed up `settings.json` sets `pluginConfigs."cc-plugin-agents-md@builtin".options.instructionFiles` to `claude-md-and-agents-md` (the **Project instructions** option in `/config`), so it reads both. This key is only read from user or managed settings, not project settings.
 
 ## Restore
 
-1. Copy the files:
+1. From this directory, copy `settings.json` and symlink `rules/`:
 
    ```
-   cp -r settings.json rules ~/.claude/
+   cp settings.json ~/.claude/
+   ln -s "$PWD/rules" ~/.claude/rules
    ```
+
+   If `~/.claude/rules` already exists, move it aside first, or `ln -s` creates the link inside it.
 
    On the next start, Claude Code clones the marketplaces in `extraKnownMarketplaces` and downloads the plugins in `enabledPlugins` that are not cached yet ([plugin loading](https://code.claude.com/docs/en/plugins/loading)). If one does not come back, reinstall it with `/plugin install <id>` using the IDs in `settings.json`.
 
