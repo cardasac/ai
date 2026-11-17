@@ -7,3 +7,4 @@
 - Use L2 constructs, or L1 (`Cfn*`) constructs when no L2 covers the resource or property. L3 constructs (patterns) are fine too.
 - Never use custom resources: no `CustomResource`, `AwsCustomResource`, `Provider` from `custom_resources`, or `Custom::` resource types.
 - If something cannot be done with L1, L2 or L3 constructs, say so and stop. Do not fall back to a custom resource.
+- Only deploy AWS resources through the project's CDK code. Never suggest any other way to deploy them.
